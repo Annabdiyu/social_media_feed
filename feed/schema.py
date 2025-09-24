@@ -2,6 +2,7 @@ import graphene
 import graphql_jwt
 from graphene_django import DjangoObjectType
 from django.db import transaction, models
+from graphql import GraphQLError
 from graphql_jwt.decorators import login_required
 from .models import User, Post, PostLike, Comment
 
@@ -14,6 +15,10 @@ class PostType(DjangoObjectType):
     class Meta:
         model = Post
         fields = ("id", "content", "author", "created_at", "likes_count", "comments_count", "shares_count")
+class CommentType(DjangoObjectType):
+    class Meta:
+        model = Comment
+        fields = "__all__"
 
 class Query(graphene.ObjectType):
     me = graphene.Field(UserType)
@@ -69,10 +74,89 @@ class LikePost(graphene.Mutation):
             return LikePost(ok=True, likes_count=post.likes_count + 1)
         return LikePost(ok=False, likes_count=post.likes_count)
 
-class Mutation(graphene.ObjectType):
-    create_post = CreatePost.Field()
-    like_post = LikePost.Field()
-    # Add more mutations: unlike_post, create_comment, delete_post etc.
+class CreateComment(graphene.Mutation):
+    class Arguments:
+        post_id = graphene.ID(required=True)
+        content = graphene.String(required=True)
+
+    comment = graphene.Field(lambda: CommentType)
+
+    @classmethod
+    def mutate(cls, root, info, post_id, content):
+        user = info.context.user
+        if user.is_anonymous:
+            raise GraphQLError("Authentication required")
+
+        try:
+            post = Post.objects.get(pk=post_id)
+        except Post.DoesNotExist:
+            raise GraphQLError("Post not found")
+
+        comment = Comment.objects.create(
+            post=post,
+            author=user,
+            content=content
+        )
+        return CreateComment(comment=comment)
+
+
+class UpdatePost(graphene.Mutation):
+    class Arguments:
+        post_id = graphene.ID(required=True)
+        content = graphene.String(required=True)
+
+    post = graphene.Field(lambda: PostType)
+
+    @classmethod
+    def mutate(cls, root, info, post_id, content):
+        user = info.context.user
+        try:
+            post = Post.objects.get(pk=post_id, author=user)
+        except Post.DoesNotExist:
+            raise GraphQLError("Post not found or not yours")
+
+        post.content = content
+        post.save()
+        return UpdatePost(post=post)
+
+class UnlikePost(graphene.Mutation):
+    class Arguments:
+        post_id = graphene.ID(required=True)
+
+    ok = graphene.Boolean()
+
+    @classmethod
+    def mutate(cls, root, info, post_id):
+        user = info.context.user
+        if user.is_anonymous:
+            raise GraphQLError("Authentication required")
+
+        try:
+            like = PostLike.objects.get(post_id=post_id, user=user)
+        except PostLike.DoesNotExist:
+            raise GraphQLError("You haven’t liked this post")
+
+        like.delete()
+        return UnlikePost(ok=True)
+
+
+
+class DeletePost(graphene.Mutation):
+    class Arguments:
+        post_id = graphene.ID(required=True)
+
+    ok = graphene.Boolean()
+
+    @classmethod
+    def mutate(cls, root, info, post_id):
+        user = info.context.user
+        try:
+            post = Post.objects.get(pk=post_id, author=user)
+        except Post.DoesNotExist:
+            raise GraphQLError("Post not found or not yours")
+
+        post.delete()
+        return DeletePost(ok=True)
 
 
 class AuthMutations(graphene.ObjectType):
@@ -84,4 +168,8 @@ class AuthMutations(graphene.ObjectType):
 class Mutation(AuthMutations, graphene.ObjectType):
     create_post = CreatePost.Field()
     like_post = LikePost.Field()
+    unlike_post = UnlikePost.Field() 
+    create_comment = CreateComment.Field()
+    update_post = UpdatePost.Field()
+    delete_post = DeletePost.Field()
 schema = graphene.Schema(query=Query, mutation=Mutation)
