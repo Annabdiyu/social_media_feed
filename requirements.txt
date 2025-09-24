@@ -1,0 +1,13 @@
+Django>=4.2
+graphene-django>=3.0
+django-environ>=0.10.0
+psycopg2-binary>=2.9
+djangorestframework>=3.14
+django-graphql-jwt>=0.4.0
+django-cors-headers>=3.14
+channels>=4.0             # optional — only if you need subscriptions
+channels-redis>=4.0       # optional
+Pillow>=9.5                # for image handling
+django-storages[boto3]>=1.13   # optional for S3
+pytest-django>=4.0
+pytest>=8.0
