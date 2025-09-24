@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "graphene_django",
+    "graphql_jwt",
     "corsheaders",
     "feed", 
 ]
@@ -106,6 +107,11 @@ GRAPHENE = {
         "graphql_jwt.middleware.JSONWebTokenMiddleware",
     ],
 }
+
+AUTHENTICATION_BACKENDS = [
+    "graphql_jwt.backends.JSONWebTokenBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
 # Custom user model
 AUTH_USER_MODEL = "feed.User"
