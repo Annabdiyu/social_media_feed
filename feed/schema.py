@@ -154,6 +154,30 @@ class CreateComment(graphene.Mutation):
         return CreateComment(comment=comment)
 
 
+class SharePost(graphene.Mutation):
+    shares_count = graphene.Int()
+    ok = graphene.Boolean()
+
+    class Arguments:
+        post_id = graphene.ID(required=True)
+
+    @login_required
+    def mutate(self, info, post_id):
+        user = info.context.user
+        try:
+            post = Post.objects.get(pk=post_id)
+        except Post.DoesNotExist:
+            raise GraphQLError("Post not found")
+
+        # Increment shares count
+        with transaction.atomic():
+            Post.objects.filter(pk=post_id).update(shares_count=models.F('shares_count') + 1)
+        
+        post.refresh_from_db()
+        return SharePost(ok=True, shares_count=post.shares_count)
+
+
+
 # ----------------------
 # Queries
 # ----------------------
@@ -186,6 +210,7 @@ class Mutation(graphene.ObjectType):
     like_post = LikePost.Field()
     unlike_post = UnlikePost.Field()
     create_comment = CreateComment.Field()
+    share_post = SharePost.Field()
     # JWT Auth
     token_auth = graphql_jwt.ObtainJSONWebToken.Field()
     verify_token = graphql_jwt.Verify.Field()
