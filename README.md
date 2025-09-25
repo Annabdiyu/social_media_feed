@@ -56,7 +56,7 @@ Django (backend)
 ### 2️⃣ Clone & Enter
 ```bash
 git clone https://github.com/Annabdiyu/social_media_feed.git
-cd social-nexus
+cd social_media_feed
 ```
 
 
