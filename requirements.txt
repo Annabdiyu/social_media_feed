@@ -11,3 +11,4 @@ Pillow>=9.5                # for image handling
 django-storages[boto3]>=1.13   # optional for S3
 pytest-django>=4.0
 pytest>=8.0
+gunicorn>=20.1
