@@ -1,11 +1,8 @@
-Sure thing!
-Here’s a **polished, production-ready `README.md`** you can drop straight into the root of your repo.
-It’s written to impress evaluators and also to guide anyone who wants to run or contribute to your project.
 
 ---
 
 ```markdown
-# 🚀 Social Nexus – A Django + PostgreSQL + GraphQL Social Feed
+# 🚀 Social_media_feed – A Django + PostgreSQL + GraphQL Social Feed
 
 A modern social-media style application where users can **create posts, like/unlike, comment, update, and delete posts**—all powered by a secure **GraphQL API** and backed by **PostgreSQL**.
 
@@ -212,9 +209,9 @@ Built with ❤️ using:
 
 ## 🧭 Author
 
-**Babi (Junior Abdiyou)**
+**Babi (Anna Abdiyu)**
 📧 [abdiyuanna@gmail.com](mailto:abdiyuanna@gmail.com)
-💻 [GitHub](https://github.com/<your-username>)
+💻 [GitHub](https://github.com/Annabdiyu)
 
 > “Code is like humor. When you have to explain it, it’s bad.” – Cory House
 
