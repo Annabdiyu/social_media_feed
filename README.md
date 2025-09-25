@@ -1,33 +1,30 @@
+# 🚀 Social Media Feed Backend
+
+> **Django + PostgreSQL + GraphQL backend** powering a real-time social media feed.  
+> Scalable, secure, and built for lightning-fast queries.
 
 ---
 
-```markdown
-# 🚀 Social_media_feed – A Django + PostgreSQL + GraphQL Social Feed
-
-A modern social-media style application where users can **create posts, like/unlike, comment, update, and delete posts**—all powered by a secure **GraphQL API** and backed by **PostgreSQL**.
-
-![GraphQL Playground](https://img.shields.io/badge/API-GraphQL-blue.svg)
-![Django](https://img.shields.io/badge/Backend-Django-092E20.svg)
-![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+## 🌟 Features at a Glance
+- **Flexible GraphQL API** – Fetch exactly the data you need
+- **Rich Interactions** – Users can create posts, like/unlike, comment, and share
+- **Authentication** – JWT-based login & token verification
+- **Scalable Design** – Optimized database schema for high traffic
+- **Production Ready** – Follows Django best practices and includes test coverage
 
 ---
 
-## ✨ Features
-
-- 🔑 **JWT Authentication** – Secure login and token refresh.
-- 📝 **Post Management** – Create, update, delete posts.
-- 💬 **Comment System** – Add comments to posts.
-- 👍 **Likes/Unlikes** – Real-time like/unlike functionality.
-- ⚡ **GraphQL API** – Flexible queries & mutations with GraphiQL playground.
-- 🗃 **PostgreSQL Database** – Robust relational storage.
-- ✅ **Pytest Coverage** – Tested mutations & queries.
+## 🏗️ Tech Stack
+| Layer         | Technology |
+|-------------- |-----------|
+| Backend       | **Django 5** |
+| Database      | **PostgreSQL 14+** |
+| API Protocol  | **GraphQL (Graphene-Django)** |
+| Auth          | **graphql-jwt** |
+| Deployment    | Any WSGI/ASGI host (e.g. Render, Railway, Heroku) |
 
 ---
 
-## 🏗 Architecture Overview
-
-```
 
 Django (backend)
 │
@@ -54,7 +51,7 @@ Django (backend)
 
 ### 2️⃣ Clone & Enter
 ```bash
-git clone https://github.com/<your-username>/social-nexus.git
+git clone https://github.com/Annabdiyu/social_media_feed.git
 cd social-nexus
 ````
 
@@ -219,10 +216,3 @@ Built with ❤️ using:
 
 ---
 
-### 💡 Tips to Impress
-- Add a **project screenshot** or GIF demo at the top.
-- Replace `<your-username>` and email with your real info.
-- If you deploy it (e.g., to Render or Heroku), include the live URL under **Quick Start**.
-
-This README hits every evaluator’s checklist: **clear setup, environment variables, database steps, testing, deployment, and eye-catching design**.
-```
