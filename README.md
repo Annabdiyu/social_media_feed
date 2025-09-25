@@ -25,7 +25,7 @@
 
 ---
 
-
+##
 Django (backend)
 │
 ├── Graphene-Django (GraphQL layer)
@@ -33,7 +33,7 @@ Django (backend)
 │
 └── PostgreSQL (data storage)
 
-````
+
 
 - **Models:** `User`, `Post`, `Comment`, `PostLike`
 - **Schema:** Query & Mutation types for posts, comments, likes
@@ -53,8 +53,8 @@ Django (backend)
 ```bash
 git clone https://github.com/Annabdiyu/social_media_feed.git
 cd social-nexus
-````
 
+'
 ### 3️⃣ Create & Activate Virtualenv
 
 ```bash
