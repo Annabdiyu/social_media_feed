@@ -1,7 +1,9 @@
 # 🚀 Social Media Feed Backend
 
 > **Django + PostgreSQL + GraphQL backend** powering a real-time social media feed.  
+>
 > Scalable, secure, and built for lightning-fast queries.
+>
 > A modern social-media style application where users can **create posts, like/unlike, comment, update, and delete posts**—all powered by a secure **GraphQL API** and backed by **PostgreSQL**.
 
 ---
