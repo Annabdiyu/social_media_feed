@@ -208,11 +208,11 @@ Built with ❤️ using:
 
 ## 🧭 Author
 
-**Babi (Anna Abdiyu)**
+**Anna Abdiyu (Anish)**
 📧 [abdiyuanna@gmail.com](mailto:abdiyuanna@gmail.com)
 💻 [GitHub](https://github.com/Annabdiyu)
 
-> “Code is like humor. When you have to explain it, it’s bad.” – Cory House
+
 
 
 
