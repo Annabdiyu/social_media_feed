@@ -25,7 +25,7 @@
 
 ---
 
-##
+
 Django (backend)
 │
 ├── Graphene-Django (GraphQL layer)
@@ -54,7 +54,7 @@ Django (backend)
 git clone https://github.com/Annabdiyu/social_media_feed.git
 cd social-nexus
 
-'
+''''
 ### 3️⃣ Create & Activate Virtualenv
 
 ```bash
