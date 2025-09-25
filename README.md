@@ -25,13 +25,14 @@
 
 ---
 
-
+```
 Django (backend)
 │
 ├── Graphene-Django (GraphQL layer)
 │    └── JWT Auth (graphql-jwt)
 │
 └── PostgreSQL (data storage)
+```
 
 
 
