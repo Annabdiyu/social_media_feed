@@ -1,7 +1,9 @@
 # Social Media Feed Backend API Documentation
 
 Welcome to the Social Media Feed Backend API.
+
 This API powers a social-media platform built with Django, GraphQL (Graphene), and PostgreSQL.
+
 This document provides detailed usage instructions for the GraphQL API of the **Social Media Feed Backend** project.
 
 ## Base URL
