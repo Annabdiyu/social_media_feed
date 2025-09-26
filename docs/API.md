@@ -1,100 +1,62 @@
+# Social Media Feed Backend API Documentation
 
+Welcome to the Social Media Feed Backend API.
+This API powers a social-media platform built with Django, GraphQL (Graphene), and PostgreSQL.
+This document provides detailed usage instructions for the GraphQL API of the **Social Media Feed Backend** project.
 
----
-
-# 📘 Social Media Feed API Documentation
-
-Welcome to the **Social Media Feed API**.
-This API powers a social-media platform built with **Django, GraphQL (Graphene), and PostgreSQL**.
-
----
-
-## 🔑 Authentication
-
-All mutations and queries requiring user context use **JWT (JSON Web Token)**.
-
-### Obtain a Token
-
-```graphql
-mutation {
-  tokenAuth(email: "user@example.com", password: "yourPassword") {
-    token
-  }
-}
+## Base URL
+```
+http://127.0.0.1:8000/graphql/
 ```
 
-Include the token in the `Authorization` header of subsequent requests:
+## Authentication
+- Obtain a JWT token via `tokenAuth` mutation.
+- Pass the token in the `Authorization` header: `Authorization: JWT <token>`.
 
-```
-Authorization: JWT <token>
-```
+## Queries
 
-### Verify / Refresh
-
-```graphql
-mutation { verifyToken(token: "<token>") { payload } }
-mutation { refreshToken(token: "<token>") { token } }
-```
-
----
-
-## 📂 Queries
-
-### 1️⃣ **Get Current User**
-
+### 1. Fetch Current User
 ```graphql
 query {
   me {
     id
     username
-    name
     email
-    avatar
-    bio
     postsCount
   }
 }
 ```
 
-### 2️⃣ **Fetch a Single Post**
-
-```graphql
-query {
-  post(id: "POST_ID") {
-    id
-    content
-    createdAt
-    likesCount
-    commentsCount
-    sharesCount
-    author {
-      id
-      username
-    }
-  }
-}
-```
-
-### 3️⃣ **Fetch Recent Posts**
-
+### 2. Fetch All Posts
 ```graphql
 query {
   posts(first: 10) {
     id
     content
+    author { username }
     createdAt
     likesCount
     commentsCount
+    sharesCount
   }
 }
 ```
 
----
+### 3. Fetch Single Post
+```graphql
+query {
+  post(id: "<post_id>") {
+    id
+    content
+    author { username }
+    createdAt
+  }
+}
+```
 
-## ✍️ Mutations
+## Mutations
 
-### 1️⃣ **Create Post**
-
+### 1. Create Post
 ```graphql
 mutation {
   createPost(content: "Hello World!") {
@@ -107,62 +69,53 @@ mutation {
 }
 ```
 
-### 2️⃣ **Update Post**
-
+### 2. Update Post
 ```graphql
 mutation {
-  updatePost(postId: "POST_ID", content: "Edited text!") {
-    post {
-      id
-      content
-    }
+  updatePost(postId: "<post_id>", content: "Updated content") {
+    post { id content }
   }
 }
 ```
 
-### 3️⃣ **Delete Post**
-
+### 3. Delete Post
 ```graphql
 mutation {
-  deletePost(postId: "POST_ID") {
+  deletePost(postId: "<post_id>") {
     ok
   }
 }
 ```
 
-### 4️⃣ **Like / Unlike Post**
-
+### 4. Like/Unlike Post
 ```graphql
 mutation {
-  likePost(postId: "POST_ID") {
+  likePost(postId: "<post_id>") {
     ok
     likesCount
   }
 }
+
 mutation {
-  unlikePost(postId: "POST_ID") {
+  unlikePost(postId: "<post_id>") {
     ok
   }
 }
 ```
 
-### 5️⃣ **Create Comment**
-
+### 5. Create Comment
 ```graphql
 mutation {
-  createComment(postId: "POST_ID", content: "Nice post!") {
+  createComment(postId: "<post_id>", content: "Nice!") {
     comment {
       id
       content
-      author {
-        username
-      }
+      author { username }
     }
   }
 }
 ```
 
----
 
 ## 🗂 Data Model
 
@@ -189,25 +142,9 @@ Errors follow standard GraphQL error responses:
 
 Always check the `"errors"` array before using `"data"`.
 
----
-
-## 🌐 Base URLs
-
-* **Local Development:** `http://localhost:8000/graphql/`
-* **Production (if deployed):** `https://<your-domain>/graphql/`
+## Notes
+- All mutations except `tokenAuth` require a valid JWT token.
+- Pagination is supported in `posts(first, after)` for scalable querying.
 
 ---
-
-## 🧩 Tips
-
-* Use [GraphQL Playground](https://github.com/graphql/graphql-playground) or Postman for testing.
-* Use the `first` argument in `posts` query for pagination.
-
----
-
-**Maintainers:** Babi 
-Built with ❤️ using **Django • Graphene • PostgreSQL**
-
----
-
-
+© 2025 Social Media Feed Backend Project
