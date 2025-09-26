@@ -116,7 +116,7 @@ mutation {
 }
 ```
 
-
+---
 ## 🗂 Data Model
 
 | Model        | Key Fields                                                             |
