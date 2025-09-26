@@ -1,37 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social Backend – Welcome</title>
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialFeed Backend - Django + GraphQL API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // CHANGED: Added custom blue-black color palette
+                        'dark-blue': '#0f172a',
+                        'medium-blue': '#1e293b',
+                        'light-blue': '#334155',
+                        'accent-blue': '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-text {
+            /* CHANGED: Updated to blue gradient */
+            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .code-block {
+            /* CHANGED: Updated to blue theme */
+            background: #f1f5f9;
+            border-left: 4px solid #1e40af;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-  <main class="max-w-3xl mx-auto mt-16 bg-white shadow-lg rounded-2xl p-10">
-    <h1 class="text-4xl font-extrabold text-blue-600 mb-6 text-center">
-      🚀 Welcome to Social Backend
-    </h1>
+<!-- CHANGED: Updated body background to dark blue -->
+<body class="bg-dark-blue text-gray-200">
+    <!-- Navigation -->
+    <!-- CHANGED: Updated nav background to medium blue -->
+    <nav class="bg-medium-blue border-b border-light-blue py-4 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <!-- CHANGED: Updated icon color to accent blue -->
+                    <i class="fas fa-project-diagram text-accent-blue text-xl"></i>
+                    <span class="text-xl font-semibold text-white">SocialMediaFeed API</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <!-- CHANGED: Updated link colors -->
+                    <a href="#features" class="text-gray-300 hover:text-accent-blue transition">Features</a>
+                    <a href="#technology" class="text-gray-300 hover:text-accent-blue transition">Technology</a>
+                    <a href="#documentation" class="text-gray-300 hover:text-accent-blue transition">Docs</a>
+                    <!-- CHANGED: Updated button to accent blue -->
+                    <a href="https://github.com/Annabdiyu/social_media_feed.git" class="bg-accent-blue text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <p class="text-gray-700 text-lg text-center mb-10">
-      This is the GraphQL + Django + PostgreSQL API powering our social-media app.
-    </p>
-
-    <section>
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">
-        Features
-      </h2>
-      <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg">
-        <li>User authentication with JWT</li>
-        <li>Create, update, and delete posts</li>
-        <li>Like / Unlike posts & comment on them</li>
-        <li>GraphQL Playground available at <code class="bg-gray-100 px-1 rounded">/graphql/</code></li>
-      </ul>
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <!-- CHANGED: Updated heading color to white -->
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white">Social Media Feed Backend API</h1>
+                <!-- CHANGED: Updated text color to gray-300 -->
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+                    A production-ready Django + PostgreSQL backend with GraphQL API for modern social applications.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <!-- REPLACED: Get Started button with GraphQL Playground -->
+                    <a
+                        href="/graphql/"
+                        class="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition"
+                    >
+                        Open GraphQL Playground
+                    </a>
+                    <!-- CHANGED: Updated secondary button -->
+                    <a href="#features" class="border border-light-blue text-gray-300 px-6 py-3 rounded-md font-medium hover:border-accent-blue hover:text-accent-blue transition">View Features</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer class="mt-12 text-center text-gray-500 text-sm">
-      Deployed with Docker • Made with ❤️ & Django
+    <!-- Features -->
+    <!-- CHANGED: Updated background to medium blue -->
+    <section id="features" class="py-16 bg-medium-blue">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-white">Core Features</h2>
+                <!-- CHANGED: Updated text color -->
+                <p class="text-gray-300 max-w-2xl mx-auto">Designed for scalability, security, and developer productivity.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- CHANGED: Updated card background to dark blue -->
+                <div class="bg-dark-blue p-6 rounded-lg shadow-lg border border-light-blue">
+                    <!-- CHANGED: Updated icon background to dark blue -->
+                    <div class="w-12 h-12 bg-dark-blue border border-accent-blue rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-accent-blue text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">GraphQL API</h3>
+                    <p class="text-gray-300">Flexible querying with precise data fetching. No over-fetching or under-fetching.</p>
+                </div>
+                
+                <div class="bg-dark-blue p-6 rounded-lg shadow-lg border border-light-blue">
+                    <!-- CHANGED: Updated icon background to dark blue -->
+                    <div class="w-12 h-12 bg-dark-blue border border-accent-blue rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-database text-accent-blue text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">PostgreSQL</h3>
+                    <p class="text-gray-300">Robust relational database with advanced indexing for high performance.</p>
+                </div>
+                
+                <div class="bg-dark-blue p-6 rounded-lg shadow-lg border border-light-blue">
+                    <!-- CHANGED: Updated icon background to dark blue -->
+                    <div class="w-12 h-12 bg-dark-blue border border-accent-blue rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-accent-blue text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">JWT Authentication</h3>
+                    <p class="text-gray-300">Secure token-based authentication for API endpoints and user data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section id="technology" class="py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-white">Technology Stack</h2>
+                    <p class="text-gray-300 mb-6">
+                        Built with modern, battle-tested technologies chosen for reliability and performance.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <!-- CHANGED: Updated icon color to accent blue -->
+                            <i class="fab fa-python text-accent-blue text-2xl mr-4"></i>
+                            <div>
+                                <h3 class="font-semibold text-white">Django 5.0</h3>
+                                <p class="text-gray-300 text-sm">Python web framework with built-in security features</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <i class="fas fa-database text-accent-blue text-2xl mr-4"></i>
+                            <div>
+                                <h3 class="font-semibold text-white">PostgreSQL 14</h3>
+                                <p class="text-gray-300 text-sm">Advanced relational database with JSON support</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <i class="fas fa-project-diagram text-accent-blue text-2xl mr-4"></i>
+                            <div>
+                                <h3 class="font-semibold text-white">GraphQL</h3>
+                                <p class="text-gray-300 text-sm">API query language with Graphene-Django integration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CHANGED: Updated code block styling -->
+                <div class="code-block p-6 rounded-lg border border-light-blue">
+                    <div class="text-sm font-mono">
+                        <p class="text-purple-600"># Example GraphQL Query</p>
+                        <p class="text-blue-600 mt-2">query {</p>
+                        <p class="ml-4 text-green-600">posts {</p>
+                        <p class="ml-8 text-gray-800">id</p>
+                        <p class="ml-8 text-gray-800">content</p>
+                        <p class="ml-8 text-green-600">author {</p>
+                        <p class="ml-12 text-gray-800">username</p>
+                        <p class="ml-8 text-green-600">}</p>
+                        <p class="ml-4 text-green-600">}</p>
+                        <p class="text-blue-600">}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Goals -->
+    <!-- CHANGED: Updated background to medium blue -->
+    <section class="py-16 bg-medium-blue">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-white">Project Objectives</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">Engineered to handle real-world social media backend requirements.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- CHANGED: Updated card background to dark blue -->
+                <div class="bg-dark-blue p-6 rounded-lg shadow-lg border border-light-blue">
+                    <h3 class="text-xl font-semibold mb-3 text-white">Post Management</h3>
+                    <p class="text-gray-300">Complete CRUD operations for posts with proper authorization and validation.</p>
+                </div>
+                
+                <div class="bg-dark-blue p-6 rounded-lg shadow-lg border border-light-blue">
+                    <h3 class="text-xl font-semibold mb-3 text-white">Flexible Querying</h3>
+                    <p class="text-gray-300">GraphQL implementation allowing clients to request exactly the data they need.</p>
+                </div>
+                
+                <div class="bg-dark-blue p-6 rounded-lg shadow-lg border border-light-blue">
+                    <h3 class="text-xl font-semibold mb-3 text-white">Scalability</h3>
+                    <p class="text-gray-300">Optimized database schema and queries for high-volume user interactions.</p>
+                </div>
+                
+                <div class="bg-dark-blue p-6 rounded-lg shadow-lg border border-light-blue">
+                    <h3 class="text-xl font-semibold mb-3 text-white">Interaction Tracking</h3>
+                    <p class="text-gray-300">Comprehensive like, comment, and share functionality with analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation CTA -->
+    <!-- CHANGED: Updated background to dark blue with accent blue gradient -->
+    <section id="documentation" class="py-16 bg-gradient-to-r from-dark-blue to-accent-blue text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+            <p class="text-blue-100 max-w-2xl mx-auto mb-8">
+                Explore the comprehensive documentation to integrate the SocialFeed API into your application.
+            </p>
+            <!-- CHANGED: Updated button to white with dark blue text -->
+            <a href="#" class="bg-white text-dark-blue px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition inline-block">View Documentation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- CHANGED: Updated footer background to dark blue -->
+    <footer class="py-12 bg-dark-blue border-t border-light-blue">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-project-diagram text-accent-blue text-xl"></i>
+                        <span class="text-xl font-semibold text-white">SocialFeed API</span>
+                    </div>
+                    <p class="text-gray-400">
+                        A production-ready Django + PostgreSQL backend with GraphQL API.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4 text-white">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-accent-blue transition">Documentation</a></li>
+                        <li><a href="#" class="hover:text-accent-blue transition">API Reference</a></li>
+                        <li><a href="#" class="hover:text-accent-blue transition">GitHub Repository</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4 text-white">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-accent-blue transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-accent-blue transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-accent-blue transition">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-light-blue mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 SocialFeed Backend API. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
-  </main>
 </body>
 </html>
