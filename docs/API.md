@@ -1,10 +1,10 @@
-# Social Backend API Documentation
+# Social Media Feed Backend API Documentation
 
-This document provides detailed usage instructions for the GraphQL API of the **Social Backend** project.
+This document provides detailed usage instructions for the GraphQL API of the **Social Media Feed Backend** project.
 
 ## Base URL
 ```
-http://<your-domain-or-localhost>/graphql/
+http://127.0.0.1:8000/graphql/
 ```
 
 ## Authentication
