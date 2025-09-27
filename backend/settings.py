@@ -90,14 +90,16 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
 
 # Media files (user uploads)
 MEDIA_URL = "/media/"
-MEDIA_ROOT = env("MEDIA_ROOT")
+#MEDIA_ROOT = env("MEDIA_ROOT")
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', '/app/media')
+STATIC_ROOT = os.environ.get('STATIC_ROOT', '/app/staticfiles')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
