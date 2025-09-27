@@ -126,7 +126,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Channels (for WebSocket/real-time features)
 ASGI_APPLICATION = "backend.asgi.application"
-REDIS_URL = env("REDIS_URL")
+REDIS_URL = env("REDIS_URL", default="redis://127.0.0.1:6379/0")
+
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
