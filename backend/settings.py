@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware", 
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -93,8 +94,8 @@ USE_TZ = True
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if os.getenv("RAILWAY_ENV"):  # Railway sets this env variable
-    STATIC_ROOT = "/app/static"
-    MEDIA_ROOT = "/app/media"
+    STATIC_ROOT = os.environ.get("STATIC_ROOT", "/tmp/staticfiles")
+    MEDIA_ROOT = os.environ.get("MEDIA_ROOT", "/tmp/mediafiles")
 else:  # Local development
     STATIC_ROOT = BASE_DIR / "staticfiles"
     MEDIA_ROOT = BASE_DIR / "mediafiles"
@@ -103,9 +104,9 @@ STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 
 # Optional: add staticfiles dirs (for local dev)
-STATICFILES_DIRS = [BASE_DIR / "static"]  # your app-level static files
-
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),  # your project static folder
+]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
