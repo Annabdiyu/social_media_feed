@@ -24,5 +24,5 @@ from .views import welcome_page
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", welcome_page, name="welcome"),
-    path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
+
 ]
