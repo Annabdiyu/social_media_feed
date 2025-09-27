@@ -45,8 +45,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = "backend.urls"
 
 
-
-STATICFILES_DIRS = [BASE_DIR / "backend/static"]
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -91,6 +89,8 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"

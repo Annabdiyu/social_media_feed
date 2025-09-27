@@ -1,4 +1,5 @@
-version: '3.9'
+#commented the version to avoid potential confusion
+#version: '3.9'
 
 services:
   web:
